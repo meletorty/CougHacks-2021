@@ -53,12 +53,16 @@ public class Math_Subroutine {
                 continue;
             }
             
-            if(intStyle == 1){
-                practiceMath(intType);
-            }else if(intStyle == 2){
-                timedMath(intType);
-            }else{
-                System.out.println("Sorry, that was not a valid number.");
+            switch (intStyle) {
+                case 1:
+                    practiceMath(intType);
+                    break;
+                case 2:
+                    timedMath(intType);
+                    break;
+                default:
+                    System.out.println("Sorry, that was not a valid number.");
+                    break;
             }
         }
     }
