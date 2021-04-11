@@ -1,5 +1,3 @@
-package wsu_hacks;
-
 import java.io.*;
 import java.util.*;
 
