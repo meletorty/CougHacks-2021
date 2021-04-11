@@ -4,4 +4,4 @@ Hackathon Project 2021
 - Grammar/literature game to learn and recognize verbs vs nouns
 - Math program (random equations and timed quiz generator)
 - Science planet game
-- - Maybe history game ? (multiple choice)
+- Maybe history game ? (multiple choice)
