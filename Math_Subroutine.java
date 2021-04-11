@@ -6,10 +6,6 @@ import java.util.*;
 public class Math_Subroutine {
 
     public static void main(String[] args) {
-        multiplicationTest(2);
-        divisionTest();
-        additionTest(3);
-        subtractionTest(2);
         mainMenu();
     }
     
@@ -17,7 +13,7 @@ public class Math_Subroutine {
         
         Scanner k = new Scanner(System.in);
         int intType;
-        int intRuns;
+        int intStyle;
         
         System.out.println("Welcome to math mode!");
         System.out.println("Press enter to continue.");
@@ -44,30 +40,25 @@ public class Math_Subroutine {
                 return;
             }
             
-            System.out.println("How many problems would you like to do?");
+            System.out.println("How do you want to play?");
+            System.out.println("1. Practice");
+            System.out.println("2. Time trial");
             
             try {
-                intRuns = k.nextInt();
+                intStyle = k.nextInt();
                 k.nextLine();
             }catch (InputMismatchException e){
                 System.out.println("Sorry, that was not a valid number.");
                 k.nextLine();
                 continue;
             }
-            for(int i=0; i<intRuns; i++){
-                switch(intType){
-                case 1:
-                    additionTest(2);
-                    continue;
-                case 2:
-                    subtractionTest(2);
-                    continue;
-                case 3:
-                    multiplicationTest(2);
-                    continue;
-                case 4:
-                    divisionTest();
-                }
+            
+            if(intStyle == 1){
+                practiceMath(intType);
+            }else if(intStyle == 2){
+                timedMath(intType);
+            }else{
+                System.out.println("Sorry, that was not a valid number.");
             }
         }
     }
@@ -244,8 +235,6 @@ public class Math_Subroutine {
                         intWrong +=1;
                     }
                     break;
-                default:
-                    break;
             }
         }
         
@@ -253,6 +242,71 @@ public class Math_Subroutine {
         intTotal = intCorrect + intWrong;
         System.out.println("You answered " + intTotal + " questions!");
         System.out.println("You got " + intCorrect + " questions right!");
+        System.out.println("Can you do better?");
+        System.out.println("Press enter to continue.");
+        k.nextLine();
+    }
+    
+    private static void practiceMath(int intType){
+        int intCorrect = 0;
+        int intWrong = 0;
+        int intTotal,intRuns, intMin, intSeconds;
+        long longTime;
+        Scanner k = new Scanner(System.in);
+        
+        System.out.println("How many problems would you like to do?");
+        
+        try {
+            intRuns = k.nextInt();
+            k.nextLine();
+        }catch (InputMismatchException e){
+            System.out.println("Sorry, that was not a valid number.");
+            k.nextLine();
+            intRuns = 0;
+        }
+        
+        longTime = System.currentTimeMillis();
+        
+        for(int i=0; i<intRuns; i++){
+            switch(intType){
+                case 1:
+                    if(additionTest(3)){
+                        intCorrect += 1;
+                    }else{
+                        intWrong +=1;
+                    }
+                    break;
+                case 2:
+                    if(subtractionTest(3)){
+                        intCorrect += 1;
+                    }else{
+                        intWrong +=1;
+                    }
+                    break;
+                case 3:
+                    if(multiplicationTest(2)){
+                        intCorrect += 1;
+                    }else{
+                        intWrong +=1;
+                    }
+                    break;
+                case 4:
+                    if(divisionTest()){
+                        intCorrect += 1;
+                    }else{
+                        intWrong +=1;
+                    }
+                    break;
+            }
+        }
+        
+        longTime = System.currentTimeMillis()-longTime;
+        intMin = (int)longTime/60000;
+        intSeconds = (int)((longTime%60000)/1000);
+        intTotal = intCorrect + intWrong;
+        System.out.println("You answered " + intTotal + " questions!");
+        System.out.println("You got " + intCorrect + " questions right!");
+        System.out.println("It took you " + intMin + " minutes and " + intSeconds + " seconds.");
         System.out.println("Can you do better?");
         System.out.println("Press enter to continue.");
         k.nextLine();
